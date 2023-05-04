@@ -7,15 +7,16 @@
         android:layout_height="match_parent"
         tools:context=".running.MainActivity">
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64dp"
+            android:layout_height="30dp"
             android:text="Wind"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/windTxt" app:layout_constraintHorizontal_bias="0.161"
-            app:layout_constraintVertical_bias="0.335"/>
+            android:id="@+id/windTxt" app:layout_constraintHorizontal_bias="0.223"
+            app:layout_constraintVertical_bias="0.355"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,16 +32,17 @@
             android:textAllCaps="true"
             android:textStyle="bold|italic"/>
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="85dp"
+            android:layout_height="30dp"
             android:text="Temperature"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/tempTxt"
-            app:layout_constraintHorizontal_bias="0.797"
-            app:layout_constraintVertical_bias="0.334"/>
+            app:layout_constraintHorizontal_bias="0.850"
+            app:layout_constraintVertical_bias="0.355" android:layout_marginStart="150dp"/>
     <EditText
             android:layout_width="227dp"
             android:layout_height="48dp"
@@ -61,10 +63,26 @@
             android:layout_height="wrap_content"
             android:id="@+id/searchCity"
             tools:ignore="MissingConstraints"
-            android:background="@color/teal_200"
-            android:textColor="@color/black" app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#e8eced" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.052"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/editTxtCity"
             android:onClick="onBtnClick"/>
+    <ImageView
+            android:layout_width="48dp"
+            android:layout_height="26dp" app:srcCompat="@drawable/wind" android:id="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="9dp" tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="205dp" app:layout_constraintEnd_toStartOf="@+id/windTxt"
+            android:layout_marginEnd="9dp" app:layout_constraintHorizontal_bias="0.636"
+            app:layout_constraintVertical_bias="0.542"/>
+    <ImageView
+            android:layout_width="43dp"
+            android:layout_height="38dp" app:srcCompat="@drawable/thermometer" android:id="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintVertical_bias="0.350"
+            app:layout_constraintHorizontal_bias="0.690"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
