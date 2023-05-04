@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".running.MainActivity" android:id="@+id/city_autocomplete">
+        tools:context=".running.MainActivity">
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -13,17 +13,31 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:id="@+id/helloWorld"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/helloWorld"/>
     <EditText
-            android:layout_width="211dp"
-            android:layout_height="61dp"
+            android:layout_width="227dp"
+            android:layout_height="48dp"
             android:inputType="textPersonName"
-            android:text="Warsaw"
+            android:hint="Warsaw"
             android:imeOptions="actionDone"
             android:ems="10"
-            android:id="@+id/editTextTextCityName"
+            android:id="@+id/editTxtCity"
             tools:ignore="MissingConstraints"
-            app:layout_constraintBottom_toTopOf="@+id/helloWorld" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintBottom_toTopOf="@+id/helloWorld"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.174"
+            app:layout_constraintVertical_bias="0.118"/>
+    <Button
+            android:text="Search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchCity"
+            tools:ignore="MissingConstraints"
+            android:textColor="@color/black" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.052"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/editTxtCity"
+            android:onClick="onBtnClick"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
