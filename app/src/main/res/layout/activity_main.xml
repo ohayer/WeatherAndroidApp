@@ -9,12 +9,38 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:text="Wind"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/helloWorld"/>
+            android:id="@+id/windTxt" app:layout_constraintHorizontal_bias="0.161"
+            app:layout_constraintVertical_bias="0.335"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/cityName"
+            app:layout_constraintHorizontal_bias="0.464"
+            app:layout_constraintVertical_bias="0.191"
+            android:textSize="25dp"
+            android:textAllCaps="true"
+            android:textStyle="bold|italic"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperature"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/tempTxt"
+            app:layout_constraintHorizontal_bias="0.797"
+            app:layout_constraintVertical_bias="0.334"/>
     <EditText
             android:layout_width="227dp"
             android:layout_height="48dp"
@@ -24,17 +50,18 @@
             android:ems="10"
             android:id="@+id/editTxtCity"
             tools:ignore="MissingConstraints"
-            app:layout_constraintBottom_toTopOf="@+id/helloWorld"
+            app:layout_constraintBottom_toTopOf="@+id/windTxt"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.174"
-            app:layout_constraintVertical_bias="0.118"/>
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.201"
+            app:layout_constraintVertical_bias="0.184"/>
     <Button
             android:text="Search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/searchCity"
             tools:ignore="MissingConstraints"
+            android:background="@color/teal_200"
             android:textColor="@color/black" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.052"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/editTxtCity"

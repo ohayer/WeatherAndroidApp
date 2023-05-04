@@ -14,13 +14,13 @@ public class JsonInfo extends ApiConnect {
         this.city = city;
     }
 
-    public int getTemperature() {
+    public String getTemperature() {
         jsonObject = getWeatherByCity(city);
         JSONObject main = null;
         try {
             main = jsonObject.getJSONObject("main");
             double temperature = main.getDouble("temp");
-            return (int) Math.round(temperature);
+            return (int) Math.round(temperature) + "°C";
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -61,7 +61,7 @@ public class JsonInfo extends ApiConnect {
         jsonObject = getWeatherByCity(city);
         try {
             long wind = jsonObject.getJSONObject("wind").getLong("speed");
-            return String.valueOf(wind) + " km/h";
+            return wind + " km/h";
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
