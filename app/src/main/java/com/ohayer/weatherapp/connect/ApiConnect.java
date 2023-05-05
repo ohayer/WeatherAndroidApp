@@ -23,6 +23,7 @@ public class ApiConnect {
             Response response = client.newCall(request).execute();
             if (response.code() == 404){
                 //TODO: catch error
+                return null;
             }
             String jsonStr = response.body().string();
             return new JSONObject(jsonStr);

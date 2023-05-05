@@ -3,6 +3,7 @@ package com.ohayer.weatherapp.connect;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class JsonInfo extends ApiConnect {
@@ -16,7 +17,7 @@ public class JsonInfo extends ApiConnect {
 
     public String getTemperature() {
         jsonObject = getWeatherByCity(city);
-        JSONObject main = null;
+        JSONObject main;
         try {
             main = jsonObject.getJSONObject("main");
             double temperature = main.getDouble("temp");
@@ -28,36 +29,43 @@ public class JsonInfo extends ApiConnect {
 
     public String getPressure() {
         jsonObject = getWeatherByCity(city);
-        JSONObject main = null;
+        JSONObject main;
         try {
             main = jsonObject.getJSONObject("main");
             double temperature = main.getDouble("pressure");
-            return temperature + "hPa";
+            return temperature + " hPa";
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
     }
-    public Date getSunrise() {
+
+    public String getSunrise() {
         jsonObject = getWeatherByCity(city);
         try {
             long sunriseTimestamp = jsonObject.getJSONObject("sys").getLong("sunrise");
             Date sunriseDate = new Date(sunriseTimestamp * 1000);
-            return sunriseDate;
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+            String sunriseTime = format.format(sunriseDate);
+            return sunriseTime;
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
     }
-    public Date getSunset() {
+
+    public String getSunset() {
         jsonObject = getWeatherByCity(city);
         try {
             long sunsetTimestamp = jsonObject.getJSONObject("sys").getLong("sunset");
-            Date sunset = new Date(sunsetTimestamp);
-            return sunset;
+            Date sunset = new Date(sunsetTimestamp * 1000);
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+            String sunSetTime = format.format(sunset);
+            return sunSetTime;
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
     }
-    public String getWindSpeed(){
+
+    public String getWindSpeed() {
         jsonObject = getWeatherByCity(city);
         try {
             long wind = jsonObject.getJSONObject("wind").getLong("speed");
@@ -66,7 +74,8 @@ public class JsonInfo extends ApiConnect {
             throw new RuntimeException(e);
         }
     }
-    public String getCityName(){
+
+    public String getCityName() {
         jsonObject = getWeatherByCity(city);
         try {
             String cityName = jsonObject.getString("name");
