@@ -1,5 +1,6 @@
 package com.ohayer.weatherapp.connect;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -80,6 +81,17 @@ public class JsonInfo extends ApiConnect {
         try {
             String cityName = jsonObject.getString("name");
             return cityName;
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public String getWeatherConditions() {
+        jsonObject = getWeatherByCity(city);
+        try {
+            JSONArray weatherArray = jsonObject.getJSONArray("weather");
+            JSONObject weatherObject = weatherArray.getJSONObject(0);
+            String weather = weatherObject.getString("main");
+            return weather.toLowerCase();
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }

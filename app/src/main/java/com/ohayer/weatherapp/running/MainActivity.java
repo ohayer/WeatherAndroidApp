@@ -4,7 +4,9 @@ package com.ohayer.weatherapp.running;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,10 +23,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView sunRise;
     private TextView sunSet;
     private Async async;
+    private ImageView conditionImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //to hide the title theme
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
         TextView dateOfToday = findViewById(R.id.dateNowTxt);
@@ -39,24 +45,21 @@ public class MainActivity extends AppCompatActivity {
         pressure = findViewById(R.id.pressureTxt);
         sunRise = findViewById(R.id.sRiseTxt);
         sunSet = findViewById(R.id.sSetTxt);
+        conditionImg = findViewById(R.id.weatherImgCondition);
 
-        async = (Async) new Async(cityName, wind, temperature, pressure, sunRise, sunSet, "Warsaw").execute();
+        async = (Async) new Async(cityName, wind, temperature, pressure, sunRise, sunSet, conditionImg, "Warsaw").execute();
         editText = findViewById(R.id.editTxtCity);
-
-
     }
 
 
     public void onBtnClick(View v) {
         String city = editText.getText().toString();
-        async = (Async) new Async(cityName, wind, temperature, pressure, sunRise, sunSet, city).execute();
-        if (async == null) {
-            async = (Async) new Async(cityName, wind, temperature, pressure, sunRise, sunSet, "Warsaw").execute();
-            Toast.makeText(this, "That city does not exist", Toast.LENGTH_LONG).show();
+        async = (Async) new Async(cityName, wind, temperature, pressure, sunRise, sunSet, conditionImg, city).execute();
+        if (async.weatherProperties.isEmpty()) {
+            Toast.makeText(this,"City does not found",Toast.LENGTH_LONG).show();
         }
-
-
     }
 
-
 }
+
+

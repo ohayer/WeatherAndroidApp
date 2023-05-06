@@ -5,7 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".running.MainActivity">
+        tools:context=".running.MainActivity"
+        android:background="@drawable/bckgrnd">
     <TextView
             android:layout_width="64dp"
             android:layout_height="30dp"
@@ -17,7 +18,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/windTxt" app:layout_constraintHorizontal_bias="0.223"
-            app:layout_constraintVertical_bias="0.420"/>
+            app:layout_constraintVertical_bias="0.5"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,14 +29,14 @@
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/cityName"
             app:layout_constraintHorizontal_bias="0.478"
-            app:layout_constraintVertical_bias="0.285"
-            android:textSize="25dp"
+            app:layout_constraintVertical_bias="0.34"
+            android:textSize="30dp"
             android:textAllCaps="true"
             android:textStyle="bold|italic"/>
     <TextView
             android:layout_width="89dp"
             android:layout_height="35dp"
-            android:text="Temperature"
+            android:text="Temp"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -43,8 +44,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/tempTxt"
-            app:layout_constraintHorizontal_bias="0.850"
-            app:layout_constraintVertical_bias="0.420" android:layout_marginStart="150dp"/>
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintVertical_bias="0.5" android:layout_marginStart="150dp"/>
     <TextView
             android:layout_width="85dp"
             android:layout_height="30dp"
@@ -57,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/pressureTxt"
-            app:layout_constraintVertical_bias="0.57"/>
+            app:layout_constraintVertical_bias="0.6"/>
     <TextView
             android:layout_width="60dp"
             android:layout_height="30dp"
@@ -67,8 +68,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/sRiseTxt"
-            app:layout_constraintVertical_bias="0.1" app:layout_constraintTop_toBottomOf="@+id/sRiseImg"
-            app:layout_constraintEnd_toStartOf="@+id/sSetTxt" app:layout_constraintHorizontal_bias="0.389"/>
+            app:layout_constraintVertical_bias="0.342" app:layout_constraintTop_toBottomOf="@+id/sRiseImg"
+            app:layout_constraintEnd_toStartOf="@+id/sSetTxt" app:layout_constraintHorizontal_bias="0.385"
+            android:layout_marginStart="40dp" android:layout_marginBottom="30dp"/>
     <TextView
             android:layout_width="60dp"
             android:layout_height="30dp"
@@ -78,9 +80,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/sSetTxt"
-            app:layout_constraintHorizontal_bias="0.789"
-            app:layout_constraintVertical_bias="0.1" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sSetImg"/>
+            app:layout_constraintHorizontal_bias="0.752"
+            app:layout_constraintVertical_bias="0.342" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sSetImg" android:layout_marginBottom="30dp"/>
     <EditText
             android:layout_width="227dp"
             android:layout_height="48dp"
@@ -114,33 +116,42 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/windTxt"
             app:layout_constraintHorizontal_bias="0.636"
-            app:layout_constraintVertical_bias="0.412"/>
+            app:layout_constraintVertical_bias="0.5"/>
     <ImageView
             android:layout_width="48dp"
             android:layout_height="38dp" app:srcCompat="@drawable/thermometer" android:id="@+id/tempPng"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.412"
-            app:layout_constraintEnd_toStartOf="@+id/tempTxt" app:layout_constraintHorizontal_bias="0.948"/>
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/tempTxt" app:layout_constraintHorizontal_bias="0.948"
+            android:layout_marginStart="200dp"/>
     <ImageView
-            android:layout_width="117dp"
+            android:layout_width="100dp"
             android:layout_height="110dp" app:srcCompat="@drawable/sunrise" android:id="@+id/sRiseImg"
             tools:ignore="MissingConstraints" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/windTxt" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.508" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginEnd="180dp"/>
+            app:layout_constraintVertical_bias="0.504" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="180dp" app:layout_constraintHorizontal_bias="0.511"/>
     <ImageView
-            android:layout_width="117dp"
+            android:layout_width="100dp"
             android:layout_height="110dp" app:srcCompat="@drawable/sunset" android:id="@+id/sSetImg"
             app:layout_constraintStart_toEndOf="@+id/sRiseImg"
             app:layout_constraintEnd_toEndOf="parent" tools:ignore="MissingConstraints"
-            app:layout_constraintTop_toBottomOf="@+id/tempTxt" app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tempTxt" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.479"/>
     <TextView
             android:text="Date of today"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/dateNowTxt"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.492" app:layout_constraintVertical_bias="0.344"/>
+            app:layout_constraintHorizontal_bias="0.492" app:layout_constraintVertical_bias="0.38"/>
+    <ImageView
+            android:layout_width="120dp"
+            android:layout_height="101dp" android:id="@+id/weatherImgCondition"
+            app:layout_constraintBottom_toTopOf="@+id/cityName"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintVertical_bias="1.0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
