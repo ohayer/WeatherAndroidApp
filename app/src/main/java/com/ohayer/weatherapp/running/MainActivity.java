@@ -1,18 +1,15 @@
 package com.ohayer.weatherapp.running;
 
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import com.ohayer.weatherapp.R;
-
-import java.time.LocalDate;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
@@ -21,9 +18,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView temperature;
     private TextView pressure;
     private TextView sunRise;
-    private TextView sunSet;
-    private Async async;
+    private TextView sunSet, dateTime;
+    public Async async;
     private ImageView conditionImg;
+    private ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +31,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        TextView dateOfToday = findViewById(R.id.dateNowTxt);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDate date = LocalDate.now();
-            dateOfToday.setText(date.getDayOfMonth() + " " + date.getMonth() + " " + date.getYear());
-        }
-
+        constraintLayout = findViewById(R.id.layoutMain);
+        dateTime = findViewById(R.id.dateNowTxt);
         cityName = findViewById(R.id.cityName);
         wind = findViewById(R.id.windTxt);
         temperature = findViewById(R.id.tempTxt);
@@ -47,17 +41,14 @@ public class MainActivity extends AppCompatActivity {
         sunSet = findViewById(R.id.sSetTxt);
         conditionImg = findViewById(R.id.weatherImgCondition);
 
-        async = (Async) new Async(cityName, wind, temperature, pressure, sunRise, sunSet, conditionImg, "Warsaw").execute();
+        async = (Async) new Async(cityName, wind, temperature, pressure, sunRise, sunSet, dateTime, conditionImg, "Warsaw", constraintLayout).execute();
         editText = findViewById(R.id.editTxtCity);
     }
 
 
     public void onBtnClick(View v) {
         String city = editText.getText().toString();
-        async = (Async) new Async(cityName, wind, temperature, pressure, sunRise, sunSet, conditionImg, city).execute();
-        if (async.weatherProperties.isEmpty()) {
-            Toast.makeText(this,"City does not found",Toast.LENGTH_LONG).show();
-        }
+        async = (Async) new Async(cityName, wind, temperature, pressure, sunRise, sunSet, dateTime, conditionImg, city, constraintLayout).execute();
     }
 
 }

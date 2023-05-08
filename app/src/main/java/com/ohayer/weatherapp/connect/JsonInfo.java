@@ -44,7 +44,7 @@ public class JsonInfo extends ApiConnect {
         jsonObject = getWeatherByCity(city);
         try {
             long sunriseTimestamp = jsonObject.getJSONObject("sys").getLong("sunrise");
-            Date sunriseDate = new Date(sunriseTimestamp * 1000);
+            Date sunriseDate = new Date(sunriseTimestamp * 1000 + TimeZoneOffset());
             SimpleDateFormat format = new SimpleDateFormat("HH:mm");
             String sunriseTime = format.format(sunriseDate);
             return sunriseTime;
@@ -57,7 +57,7 @@ public class JsonInfo extends ApiConnect {
         jsonObject = getWeatherByCity(city);
         try {
             long sunsetTimestamp = jsonObject.getJSONObject("sys").getLong("sunset");
-            Date sunset = new Date(sunsetTimestamp * 1000);
+            Date sunset = new Date(sunsetTimestamp * 1000 + TimeZoneOffset());
             SimpleDateFormat format = new SimpleDateFormat("HH:mm");
             String sunSetTime = format.format(sunset);
             return sunSetTime;
@@ -94,6 +94,26 @@ public class JsonInfo extends ApiConnect {
             return weather.toLowerCase();
         } catch (JSONException e) {
             throw new RuntimeException(e);
+        }
+    }
+    public  Date DateTime() {
+        jsonObject = getWeatherByCity(city);
+        try {
+            long unixTimestamp = jsonObject.getLong("dt");
+            return new Date(unixTimestamp * 1000 + TimeZoneOffset());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public Long TimeZoneOffset(){
+        jsonObject = getWeatherByCity(city);
+        try {
+            long timezone = jsonObject.getInt("timezone");
+            return timezone * 1000;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
