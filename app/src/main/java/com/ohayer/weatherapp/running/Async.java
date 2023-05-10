@@ -1,10 +1,12 @@
 package com.ohayer.weatherapp.running;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.ohayer.weatherapp.R;
@@ -20,7 +22,7 @@ import java.util.Locale;
 
 public class Async extends AsyncTask<Void, Void, List<String>> {
     @SuppressLint("StaticFieldLeak")
-    private final TextView cityName, wind , temperature, pressure, sunRise, sunSet, dateTime;
+    private final TextView cityName, wind, temperature, pressure, sunRise, sunSet, dateTime;
     @SuppressLint("StaticFieldLeak")
     private final ImageView conditionImg;
 
@@ -29,7 +31,10 @@ public class Async extends AsyncTask<Void, Void, List<String>> {
     @SuppressLint("StaticFieldLeak")
     private final ConstraintLayout constraintLayout;
 
-    public Async(TextView textView, TextView wind, TextView temperature, TextView pressure, TextView sunRise, TextView sunSet, TextView dateTime, ImageView conditionImg, String city, ConstraintLayout constraintLayout) {
+    @SuppressLint("StaticFieldLeak")
+    private final Context context;
+
+    public Async(TextView textView, TextView wind, TextView temperature, TextView pressure, TextView sunRise, TextView sunSet, TextView dateTime, ImageView conditionImg, String city, ConstraintLayout constraintLayout, Context context) {
         this.cityName = textView;
         this.wind = wind;
         this.temperature = temperature;
@@ -40,6 +45,7 @@ public class Async extends AsyncTask<Void, Void, List<String>> {
         this.conditionImg = conditionImg;
         this.city = city;
         this.constraintLayout = constraintLayout;
+        this.context = context;
     }
 
 
@@ -58,7 +64,7 @@ public class Async extends AsyncTask<Void, Void, List<String>> {
             weatherProperties.add(jsonInfo.getWeatherConditions());
             weatherProperties.add(String.valueOf(jsonInfo.DateTime()));
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            System.err.println("City does not found " + e.getMessage());
         }
         return weatherProperties;
     }
@@ -67,7 +73,11 @@ public class Async extends AsyncTask<Void, Void, List<String>> {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onPostExecute(List<String> weatherProperties) {
-        try {
+
+        if (weatherProperties.isEmpty()) {
+            Toast.makeText(this.context, "City does not found.", Toast.LENGTH_LONG).show();
+        }
+            try {
             this.cityName.setText(weatherProperties.get(0));
             this.wind.setText(weatherProperties.get(1));
             this.temperature.setText(weatherProperties.get(2));
@@ -110,6 +120,7 @@ public class Async extends AsyncTask<Void, Void, List<String>> {
             if (current.isBefore(sunrise) && current.isAfter(sunset)) {
                 this.constraintLayout.setBackgroundResource(R.drawable.backgrounddark);
             }
+
 
         } catch (IndexOutOfBoundsException | ParseException e) {
             e.getMessage();
